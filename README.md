@@ -1,6 +1,6 @@
 # Fix Multiplayer Mob Despawn
 
-A small mod for Fabric which prevent mobs despawning in multiplayer (when they wouldn't in single player).
+A small server-side mod for Fabric which prevent mobs despawning in multiplayer (when they wouldn't in single player).
 This allows the use of certain farms such as ianxofour's gold/xp farm without the need to have a second player stand at the overworld bridge.
 
 This is inspired by the [Fix for Mob Despawn](https://github.com/RandomNoobOnInt/Fix-For-Mob-Despawn) plugin.
