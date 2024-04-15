@@ -21,5 +21,7 @@ Instead one must use a mod like Carpet to spawn a "dummy" player near the overwo
 Rather than requiring the spawning of a dummy player near the overworld bridge, this mod instead detects when a mob has travelled
 through a nether portal. If it has then we temporarily disable the 128-block despawn rule for that mob thus allowing it to persist.
 
+This is also the author's preference instead of the command based approach used in the Fix for Mob Despawn plugin.
+
 In order to minimise unintended consequences, we automatically re-enable the rule after 60 seconds. Note that the mob will not
 necessarily despawn after 60 seconds, it will just revert to its original despawning checks.
