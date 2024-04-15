@@ -3,27 +3,21 @@
 	"id": "fix-multiplayer-mob-despawn",
 	"version": "${version}",
 	"name": "Fix Multiplayer Mob Despawn",
-	"description": "This is an example description! Tell everyone what your mod is about!",
+	"description": "Prevents mobs from despawning within 60 seconds of nether portal transport.",
 	"authors": [
-		"Me!"
+		"Burtannia <james@functionalcore.dev>"
 	],
 	"contact": {
 		"homepage": "https://fabricmc.net/",
 		"sources": "https://github.com/FabricMC/fabric-example-mod"
 	},
-	"license": "CC0-1.0",
+	"license": "MIT",
 	"icon": "assets/fix-multiplayer-mob-despawn/icon.png",
 	"environment": "*",
 	"entrypoints": {
 		"main": [
 			{
 				"value": "com.burtannia.fixmpdespawn.FixMultiplayerMobDespawn",
-				"adapter": "kotlin"
-			}
-		],
-		"client": [
-			{
-				"value": "com.burtannia.fixmpdespawn.FixMultiplayerMobDespawnClient",
 				"adapter": "kotlin"
 			}
 		]
