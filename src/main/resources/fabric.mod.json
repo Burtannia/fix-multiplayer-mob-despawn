@@ -23,11 +23,7 @@
 		]
 	},
 	"mixins": [
-		"fix-multiplayer-mob-despawn.mixins.json",
-		{
-			"config": "fix-multiplayer-mob-despawn.client.mixins.json",
-			"environment": "client"
-		}
+		"fix-multiplayer-mob-despawn.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.15.10",
