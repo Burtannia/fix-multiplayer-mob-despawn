@@ -2,8 +2,9 @@ package com.burtannia.fixmpdespawn
 
 import com.burtannia.fixmpdespawn.event.EntityMoveWorldEvent
 import com.burtannia.fixmpdespawn.event.EntityMoveWorldHandler
-import com.burtannia.fixmpdespawn.mixin.MobEntityPersistentDurationMixin
+import com.burtannia.fixmpdespawn.utils.PersistentFor
 import net.fabricmc.api.ModInitializer
+import net.minecraft.entity.mob.MobEntity
 import net.minecraft.server.world.ServerWorld
 import net.minecraft.util.ActionResult
 import org.slf4j.LoggerFactory
@@ -11,7 +12,7 @@ import org.slf4j.LoggerFactory
 object FixMultiplayerMobDespawn : ModInitializer {
     private const val MOD_ID: String = "fix-multiplayer-mob-despawn"
     private val logger = LoggerFactory.getLogger(MOD_ID)
-    private const val PERSIST_DURATION: Long = 60 * 1000 // 60 seconds
+    private const val PERSIST_DURATION: Long = 20 * 60 // 60 seconds @ 20 TPS
 
     override fun onInitialize() {
         logger.info("Initialising $MOD_ID...")
@@ -27,8 +28,8 @@ object FixMultiplayerMobDespawn : ModInitializer {
         override fun handle(event: EntityMoveWorldEvent): ActionResult {
             val entity = event.entity
 
-            if (entity.world is ServerWorld && entity is MobEntityPersistentDurationMixin)
-                entity.setPersistentFor(PERSIST_DURATION)
+            if (entity.world is ServerWorld && entity is MobEntity)
+                (entity as PersistentFor).`fix_mp_mob_despawn$setPersistentFor`(PERSIST_DURATION)
 
             return ActionResult.PASS
         }
