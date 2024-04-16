@@ -6,6 +6,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -26,12 +28,17 @@ public abstract class MobEntityPersistentDurationMixin extends LivingEntity impl
         super(entityType, world);
     }
 
+    @Unique
+    private static final Logger fix_multiplayer_mob_despawn$logger = LoggerFactory.getLogger("fix-multiplayer-mob-despawn");
+
     @Inject(at = @At("HEAD"), method = "tick")
     private void onTick(CallbackInfo info) {
-        if (fix_mp_mob_despawn$persistentTicks == null)
+        if (fix_mp_mob_despawn$persistentTicks == null) {
             return;
+        }
 
         if (fix_mp_mob_despawn$persistentTicks == 0) {
+            fix_multiplayer_mob_despawn$logger.debug("removing persistent for {}", this.getId());
             this.persistent = false;
             this.fix_mp_mob_despawn$persistentTicks = null;
             return;
@@ -42,6 +49,7 @@ public abstract class MobEntityPersistentDurationMixin extends LivingEntity impl
 
     @Override
     public void fix_mp_mob_despawn$setPersistentFor(long ticks) {
+        fix_multiplayer_mob_despawn$logger.debug("persisting {} for {} ticks", this.getId(), ticks);
         if (ticks <= 0) {
             this.persistent = false;
             this.fix_mp_mob_despawn$persistentTicks = null;

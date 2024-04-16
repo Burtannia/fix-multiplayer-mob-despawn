@@ -15,9 +15,9 @@ object FixMultiplayerMobDespawn : ModInitializer {
     private const val PERSIST_DURATION: Long = 20 * 60 // 60 seconds @ 20 TPS
 
     override fun onInitialize() {
-        logger.info("Initialising $MOD_ID...")
+        logger.trace("Initialising $MOD_ID...")
         registerHandlers()
-        logger.info("Finished initialising $MOD_ID")
+        logger.trace("Finished initialising $MOD_ID")
     }
 
     private fun registerHandlers() {
